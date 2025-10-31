@@ -12,3 +12,15 @@ function solution(babbling) {
     }
     return answer;
 }
+
+// 정규표현식으로 풀기
+// function solution(babbling) {
+//   var answer = 0;
+//   const regex = /^(aya|ye|woo|ma)+$/; // 정규표현식
+
+//   babbling.forEach(word => {
+//     if (regex.test(word)) answer++;  
+//   })
+
+//   return answer;
+// }
