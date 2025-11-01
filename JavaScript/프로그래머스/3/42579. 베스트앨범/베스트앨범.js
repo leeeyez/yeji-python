@@ -47,3 +47,26 @@ function solution(genres, plays) {
     }
     return answer;
 }
+
+// 장르별 총재생횟수 객체 / {장르, 재생수, 고유번호} 갖는 객체 배열 두가지로 나누어 비교
+function solution(genres, plays) {
+    var dic = {};
+    genres.forEach((t,i)=> {
+        dic[t] = dic[t] ?  dic[t] + plays[i] :plays[i];        
+    }); // 장르별 총 재생수를 담는 객체 {genre: 총재생횟수}
+
+    var dupDic = {};
+    return genres          
+          .map((t,i)=> ({genre : t, count:plays[i] , index:i})) // 객체 배열로 전환
+          .sort((a,b)=>{  // 정렬             
+               if(a.genre !== b.genre) return dic[b.genre] - dic[a.genre]; // 장르 총합 기준 (내림차순)
+               if(a.count !== b.count) return b.count - a.count; // 장르 내 재생횟수 기준 (내림차순)
+               return a.index - b.index; // 고유번호 기준 (오름차순)
+           })
+           .filter(t=>  {
+               if(dupDic[t.genre] >= 2) return false; // 장르의 노래가 2개 이상이면 false -> 필터로 제거
+               dupDic[t.genre] = dupDic[t.genre] ? dupDic[t.genre]+ 1 : 1; // 아니면 dupPic에 추가
+               return true;
+            })
+           .map(t=> t.index);  // index만 뽑기
+}
