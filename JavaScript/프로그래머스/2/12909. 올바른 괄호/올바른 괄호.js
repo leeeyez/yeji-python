@@ -32,3 +32,14 @@ function solution(s){
 
     return answer;
 }
+
+function solution(s){
+    let cum = 0
+    for (let paren of s) {
+        cum += paren === '('? 1: -1 // 삼항연산자로 표현 가능
+        if(cum < 0) {
+            return false
+        }
+    }
+    return cum === 0? true: false;
+}
