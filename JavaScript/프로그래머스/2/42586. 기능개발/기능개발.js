@@ -23,3 +23,21 @@ function solution(progresses, speeds) {
     
     return ranswer;
 }
+
+
+function solution(progresses, speeds) {
+    let answer = [0];
+    let days = progresses.map((progress, index) => Math.ceil((100 - progress) / speeds[index])); // map을 통해 days로 바로 변환하여 저장 [7,7,9]
+    let maxDay = days[0]; // maxDay 초깃값을 첫번째 배포날로 정함
+
+    for(let i = 0, j = 0; i< days.length; i++){
+        if(days[i] <= maxDay) { // maxDay보다 작게 걸리면 이전 작업과 같이 배포되므로 answer += 1
+            answer[j] += 1;
+        } else { // maxDay보다 길게 걸리면 maxDay 갱신 후 answer 그 다음 인덱스에 1
+            maxDay = days[i];
+            answer[++j] = 1;
+        }
+    }
+
+    return answer;
+}
