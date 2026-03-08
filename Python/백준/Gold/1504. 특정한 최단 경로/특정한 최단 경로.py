@@ -18,7 +18,7 @@ for _ in range(e):
 v1, v2 = map(int, input().split()) # 무조건 지나야하는 정점 2개
 
 def dijkstra(start):
-    # 각 인덱스번호까지의 최단 경로 배열
+    # start부터 각 인덱스번호까지의 최단 경로 배열
     dist = [INF] * (n + 1)
 
     q = []
